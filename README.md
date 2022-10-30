@@ -2,8 +2,13 @@
 
 ## Set up
 
+Require:
+
+- Node >= 16
+- pnpm
+
 ```
-$ npm install prepare
+$ pnpm install
 ```
 
 Copy `.env.example` to `.env`
@@ -24,7 +29,7 @@ ACCOUNTS=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,bbbbbb
 Compile contracts
 
 ```shell
-$ npm run compile
+$ pnpm run compile
 ```
 
 ## Lint
@@ -32,7 +37,7 @@ $ npm run compile
 Use `cspell`, `prettier`, `eslint` to format and check code format.
 
 ```shell
-$ npm run lint
+$ pnpm run lint
 ```
 
 ## Test
@@ -40,19 +45,19 @@ $ npm run lint
 Run all tests
 
 ```shell
-$ npm run test
+$ pnpm run test
 ```
 
 Run all tests and get estimating gas used in each contract
 
 ```shell
-$ npm run test:analysis
+$ pnpm run test:analysis
 ```
 
 Get Test coverage
 
 ```shell
-$ npm run coverage
+$ pnpm run coverage
 ```
 
 Test coverage will show in the terminal(stdout) and HTML files are generated in the `coverage` folder so that you can also open them in the browser to view.
@@ -62,7 +67,7 @@ Test coverage will show in the terminal(stdout) and HTML files are generated in 
 Flatten all smart contracts in the `contracts` folder and generate files to the `flatten` folder according to their relative path, and all flattened contracts are ready for being verified. It helps a lot usually.
 
 ```shell
-$ npm run flat
+$ pnpm run flat
 ```
 
 ## Run some script
@@ -70,7 +75,7 @@ $ npm run flat
 Check before you run it!
 
 ```
-$ npm hardhat run scripts/xxxx.ts
+$ pnpm hardhat run scripts/xxxx.ts
 ```
 
 # Directory Structure
@@ -105,7 +110,7 @@ $ npm hardhat run scripts/xxxx.ts
 
 `tests` is where you write test scripts to test your contracts thoroughly. It uses hardhat framework to run tests and there is a temporary chain for you to read and write arbitrarily. For more, you can refer to hardhat [docs](https://hardhat.org/getting-started/)
 
-`.husky` is a folder for git hook. By default, there is a pre-commit hook that runs `npm run lint` and `npm run test` before you make a git commit.
+`.husky` is a folder for git hook. By default, there is a pre-commit hook that runs `pnpm run lint` and `pnpm run test` before you make a git commit.
 
 `flat.ts` is a custom file to run smart flatten as hardhat's origin command `flatten` doesn't work well.
 
