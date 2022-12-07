@@ -8,6 +8,8 @@ import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'solidity-coverage';
 import '@openzeppelin/hardhat-upgrades';
+import '@nomiclabs/hardhat-ethers';
+import 'hardhat-contract-sizer';
 
 dotenv.config();
 addFlatTask();
@@ -31,32 +33,13 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: '0.8.4',
+        version: '0.8.17',
         settings: {
           optimizer: {
             enabled: true,
             runs: 200,
           },
         },
-      },
-      {
-        version: '0.5.16',
-      },
-      {
-        version: '0.6.6',
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 999999,
-          },
-          evmVersion: 'istanbul',
-        },
-      },
-      {
-        version: '0.4.18',
-      },
-      {
-        version: '0.4.0',
       },
     ],
   },
@@ -71,14 +54,16 @@ const config: HardhatUserConfig = {
       gas: 'auto',
       gasPrice: 'auto',
     },
-    rinkeby: {
-      url: process.env.RINKEBY_URL || '',
-      accounts: accounts,
-    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: 'USD',
+  },
+  contractSizer: {
+    alphaSort: false,
+    disambiguatePaths: false,
+    runOnCompile: true,
+    strict: true,
   },
 };
 
