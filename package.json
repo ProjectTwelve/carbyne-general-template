@@ -4,7 +4,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "prepare": "pnpm simple-git-hooks",
+    "postinstall": "pnpm simple-git-hooks",
     "compile": "hardhat compile",
     "flat": "hardhat flat",
     "test": "hardhat test",
