@@ -1,17 +1,31 @@
 {
-  "name": "hardhat-project",
+  "name": "carbyne-general-template",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "pnpm simple-git-hooks",
     "compile": "hardhat compile",
     "flat": "hardhat flat",
-    "prettier": "prettier -w .",
     "test": "hardhat test",
     "test:analysis": "REPORT_GAS=true hardhat test",
     "coverage": "hardhat coverage",
-    "lint": "cspell \"**/*.sol\" \"**/*.ts\" && prettier -w . && eslint \"**/**.ts\" --fix && solhint \"contracts/**/*.sol\""
+    "lint:spell": "cspell \"**/*.sol\" \"**/*.ts\"",
+    "lint:format": "prettier -w . --plugin=prettier-plugin-solidity",
+    "lint:fix": "eslint \"**/**.ts\" --fix",
+    "lint:solhint": "solhint \"contracts/**/*.sol\""
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,sol}": [
+      "pnpm lint:format",
+      "pnpm lint:fix"
+    ],
+    "*.{js,ts}": [
+      "pnpm lint:fix"
+    ]
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.0.0",
@@ -41,12 +55,14 @@
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.2",
     "hardhat": "^2.9.1",
+    "hardhat-contract-sizer": "^2.6.1",
     "hardhat-gas-reporter": "^1.0.6",
-    "husky": "^7.0.4",
+    "lint-staged": "^13.1.0",
     "lodash": "^4.17.15",
     "prettier": "^2.5.1",
     "prettier-plugin-sh": "^0.8.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "prettier-plugin-solidity": "1.1.0",
+    "simple-git-hooks": "^2.8.1",
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.17",
     "ts-node": "^10.4.0",
@@ -57,8 +73,7 @@
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "@openzeppelin/contracts": "^4.7.3",
-    "@openzeppelin/contracts-upgradeable": "^4.7.3",
-    "hardhat-contract-sizer": "^2.6.1"
+    "@openzeppelin/contracts-upgradeable": "^4.7.3"
   },
   "files": []
 }

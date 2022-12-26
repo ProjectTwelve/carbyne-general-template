@@ -5,3 +5,4 @@ coverage*
 gasReporterOutput.json
 typechain
 pnpm-lock.yaml
+package.json
